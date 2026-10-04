@@ -1,5 +1,7 @@
 # Chhaya — Log Redaction Gateway
 
+[![Tests](https://github.com/Siddh-sys-rgb/chhaya-log-redaction-gateway/actions/workflows/tests.yml/badge.svg)](https://github.com/Siddh-sys-rgb/chhaya-log-redaction-gateway/actions/workflows/tests.yml)
+
 A local Flask workspace that removes supported sensitive patterns from application logs before they are shared. Paste text or upload JSON Lines, inspect the masked result and export an immutable artifact. The original log is never written to the application database.
 
 The fictional setting is Narmada Supplies in Ahmedabad. Sample people, credentials and log events are authored for this repository. No external dataset or cloud inference service is required.
@@ -19,7 +21,8 @@ The fictional setting is Narmada Supplies in Ahmedabad. Sample people, credentia
 Python **3.11 or 3.12** is recommended. Node is optional and used only to verify JavaScript syntax.
 
 ```bash
-cd sensitive-log-redaction
+git clone https://github.com/Siddh-sys-rgb/chhaya-log-redaction-gateway.git
+cd chhaya-log-redaction-gateway
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
@@ -31,7 +34,8 @@ Open **http://127.0.0.1:8114**. The server binds to localhost and does not enabl
 ## Run on Windows PowerShell
 
 ```powershell
-cd sensitive-log-redaction
+git clone https://github.com/Siddh-sys-rgb/chhaya-log-redaction-gateway.git
+cd chhaya-log-redaction-gateway
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe app.py --port 8114
