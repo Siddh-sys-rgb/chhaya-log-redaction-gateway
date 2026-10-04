@@ -1,0 +1,8 @@
+# ORIGINAL FICTIONAL TRAINING LOG — Ahmedabad / Narmada Supplies
+2026-09-15T09:02:00Z INFO checkout receipt=BAHI-204 customer_email=riya.shah@example.test
+2026-09-15T09:02:02Z WARN notify mobile=+91 90000 00001 retry=1
+2026-09-15T09:03:00Z DEBUG connector api_key=DEMO_NARMADA_NOT_A_REAL_KEY
+2026-09-15T09:03:02Z DEBUG Authorization: Bearer DEMO_TOKEN_NOT_A_REAL_SECRET
+2026-09-15T09:04:00Z INFO delivery phone=90000-00002 district=Navrangpura
+2026-09-15T09:05:00Z INFO health duration_ms=140 status=200 address=192.0.2.18
+2026-09-15T09:05:30Z DEBUG password="fictional two word credential"
