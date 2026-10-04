@@ -15,7 +15,7 @@ RULES = {
 }
 EMAIL = re.compile(r'(?<![\w.+-])[A-Za-z0-9.!#$%&\x27*+/=?^_`{|}~-]{1,64}@[A-Za-z0-9-]{1,63}(?:\.[A-Za-z0-9-]{1,63}){1,4}(?![\w.-])')
 PHONE = re.compile(r'(?<![\w.])(?:\+?91[ -]?)?[6-9](?:[ -]?\d){9}(?![\w.])')
-CREDENTIAL = re.compile(r'(?i)(\b(?:password|passwd|pwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret)\b["\x27]?\s*[:=]\s*)(?:"[^"\n]*"|\x27[^\x27\n]*\x27|[^\s,;\}\]]+)')
+CREDENTIAL = re.compile(r"""(?im)(\b(?:password|passwd|pwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret)\b["']?\s*[:=]\s*)(?:"(?:\\[^\n]|[^"\\\n])*(?:"|$)|'(?:\\[^\n]|[^'\\\n])*(?:'|$)|[^\s,;\}\]"']+)""")
 BEARER = re.compile(r'(?i)(\bBearer\s+)[A-Za-z0-9._~+/-]+=*')
 TOKEN = re.compile(r'(?<![A-Za-z0-9_])(?:sk_(?:test|live)_[A-Za-z0-9_-]{6,}|ghp_[A-Za-z0-9]{6,}|DEMO_[A-Z0-9_]{6,})(?![A-Za-z0-9_])')
 SECRET_KEYS = re.compile(r'(?i)^(?:password|passwd|pwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret|authorization)$')
@@ -70,13 +70,16 @@ def redact(text, mode='text'):
                 return [visit(item, depth + 1) for item in value]
             if isinstance(value, str):
                 return sanitize_string(value, counts)
+            if isinstance(value, int) and not isinstance(value, bool) and PHONE.fullmatch(str(value)):
+                counts['indian_phone'] += 1
+                return '[REDACTED:INDIAN_PHONE]'
             return value
         out = []
         for line in text.splitlines():
             if not line.strip():
                 continue
             try:
-                value = json.loads(line)
+                value = json.loads(line, parse_constant=lambda value: (_ for _ in ()).throw(ValueError()))
             except (ValueError, RecursionError):
                 raise InputError('Each non-empty line must contain valid JSON.') from None
             out.append(json.dumps(visit(value), ensure_ascii=True, separators=(',', ':')))
