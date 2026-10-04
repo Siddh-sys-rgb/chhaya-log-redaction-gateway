@@ -15,9 +15,9 @@ RULES = {
 }
 EMAIL = re.compile(r'(?<![\w.+-])[A-Za-z0-9.!#$%&\x27*+/=?^_`{|}~-]{1,64}@[A-Za-z0-9-]{1,63}(?:\.[A-Za-z0-9-]{1,63}){1,4}(?![\w.-])')
 PHONE = re.compile(r'(?<![\w.])(?:\+?91[ -]?)?[6-9](?:[ -]?\d){9}(?![\w.])')
-CREDENTIAL = re.compile(r'(?i)(\b(?:password|passwd|pwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret)\b["\x27]?\s*[:=]\s*)(?:"[^"\n]{0,512}"|\x27[^\x27\n]{0,512}\x27|[^\s,;\}\]]{1,512})')
-BEARER = re.compile(r'(?i)(\bBearer\s+)[A-Za-z0-9._~+/-]{3,512}=*')
-TOKEN = re.compile(r'(?<![A-Za-z0-9_])(?:sk_(?:test|live)_[A-Za-z0-9_-]{6,256}|ghp_[A-Za-z0-9]{6,256}|DEMO_[A-Z0-9_]{6,256})(?![A-Za-z0-9_])')
+CREDENTIAL = re.compile(r'(?i)(\b(?:password|passwd|pwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret)\b["\x27]?\s*[:=]\s*)(?:"[^"\n]*"|\x27[^\x27\n]*\x27|[^\s,;\}\]]+)')
+BEARER = re.compile(r'(?i)(\bBearer\s+)[A-Za-z0-9._~+/-]+=*')
+TOKEN = re.compile(r'(?<![A-Za-z0-9_])(?:sk_(?:test|live)_[A-Za-z0-9_-]{6,}|ghp_[A-Za-z0-9]{6,}|DEMO_[A-Z0-9_]{6,})(?![A-Za-z0-9_])')
 SECRET_KEYS = re.compile(r'(?i)^(?:password|passwd|pwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret|authorization)$')
 
 class InputError(ValueError):
