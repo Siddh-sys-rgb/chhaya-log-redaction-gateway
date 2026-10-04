@@ -51,3 +51,15 @@ def test_bounded_oversized_output():
 def test_redaction_is_idempotent():
     output=redact('password=abc riya@example.test +91 90000 00001')['output']
     assert redact(output)['output']==output
+
+def test_evaluation_corpus_reports_false_positives_and_misses():
+    from evaluate import evaluate
+    result=evaluate()
+    assert result['cases']==20
+    assert result['true_positive']==13 and result['true_negative']==7
+    assert result['false_positive']==result['false_negative']==0
+
+def test_jsonl_empty_lines_and_scalar_values():
+    result=redact(' \ntrue\n42\n"riya@example.test"\n', 'jsonl')
+    assert result['line_count']==3
+    assert result['output'].splitlines()[:2]==['true','42']

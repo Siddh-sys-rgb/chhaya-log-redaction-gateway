@@ -15,7 +15,7 @@ RULES = {
 }
 EMAIL = re.compile(r'(?<![\w.+-])[A-Za-z0-9.!#$%&\x27*+/=?^_`{|}~-]{1,64}@[A-Za-z0-9-]{1,63}(?:\.[A-Za-z0-9-]{1,63}){1,4}(?![\w.-])')
 PHONE = re.compile(r'(?<![\w.])(?:\+?91[ -]?)?[6-9](?:[ -]?\d){9}(?![\w.])')
-CREDENTIAL = re.compile(r"""(?im)(\b(?:password|passwd|pwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret)\b["']?\s*[:=]\s*)(?:"(?:\\[^\n]|[^"\\\n])*(?:"|$)|'(?:\\[^\n]|[^'\\\n])*(?:'|$)|[^\s,;\}\]"']+)""")
+CREDENTIAL = re.compile(r"""(?im)(\b(?:password|passwd|pwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret)\b["']?\s*[:=]\s*)(?:\[REDACTED:[A-Z_]+\]|"(?:\\[^\n]|[^"\\\n])*(?:"|$)|'(?:\\[^\n]|[^'\\\n])*(?:'|$)|[^\s,;\}\]"']+)""")
 BEARER = re.compile(r'(?i)(\bBearer\s+)[A-Za-z0-9._~+/-]+=*')
 TOKEN = re.compile(r'(?<![A-Za-z0-9_])(?:sk_(?:test|live)_[A-Za-z0-9_-]{6,}|ghp_[A-Za-z0-9]{6,}|DEMO_[A-Z0-9_]{6,})(?![A-Za-z0-9_])')
 SECRET_KEYS = re.compile(r'(?i)^(?:password|passwd|pwd|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|client[_-]?secret|authorization)$')
@@ -35,6 +35,8 @@ def sanitize_string(text, counts):
     # Explicit labelled values first: an entire value is hidden even if it contains another pattern.
     def replace(rule, prefix=False):
         def sub(match):
+            if prefix and re.search(r'\[REDACTED:[A-Z_]+\]$', match.group(0)):
+                return match.group(0)
             counts[rule] += 1
             return (match.group(1) if prefix else '') + '[REDACTED:' + rule.upper() + ']'
         return sub

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "supported-1",
+    "text": "riya.shah@example.test",
+    "expected": [
+      "email"
+    ]
+  },
+  {
+    "id": "supported-2",
+    "text": "dev+alerts@example.test",
+    "expected": [
+      "email"
+    ]
+  },
+  {
+    "id": "supported-3",
+    "text": "+91 90000 00001",
+    "expected": [
+      "indian_phone"
+    ]
+  },
+  {
+    "id": "supported-4",
+    "text": "90000-00002",
+    "expected": [
+      "indian_phone"
+    ]
+  },
+  {
+    "id": "supported-5",
+    "text": "9000000003",
+    "expected": [
+      "indian_phone"
+    ]
+  },
+  {
+    "id": "supported-6",
+    "text": "password=\"fictional two words\"",
+    "expected": [
+      "credential"
+    ]
+  },
+  {
+    "id": "supported-7",
+    "text": "api_key=DEMO_SAFE_NOT_REAL",
+    "expected": [
+      "credential"
+    ]
+  },
+  {
+    "id": "supported-8",
+    "text": "secret=fictional",
+    "expected": [
+      "credential"
+    ]
+  },
+  {
+    "id": "supported-9",
+    "text": "password=\"abc\\\"secret-tail\"",
+    "expected": [
+      "credential"
+    ]
+  },
+  {
+    "id": "supported-10",
+    "text": "Authorization: Bearer abc.def.fake",
+    "expected": [
+      "bearer"
+    ]
+  },
+  {
+    "id": "supported-11",
+    "text": "DEMO_ORIGINAL_FAKE_TOKEN",
+    "expected": [
+      "token"
+    ]
+  },
+  {
+    "id": "supported-12",
+    "text": "sk_test_thisisfictional",
+    "expected": [
+      "token"
+    ]
+  },
+  {
+    "id": "supported-13",
+    "text": "ghp_thisisfictional",
+    "expected": [
+      "token"
+    ]
+  },
+  {
+    "id": "control-1",
+    "text": "receipt=BAHI-204 status=200",
+    "expected": []
+  },
+  {
+    "id": "control-2",
+    "text": "192.0.2.18",
+    "expected": []
+  },
+  {
+    "id": "control-3",
+    "text": "1234567890",
+    "expected": []
+  },
+  {
+    "id": "control-4",
+    "text": "5000000000",
+    "expected": []
+  },
+  {
+    "id": "control-5",
+    "text": "duration_ms=140",
+    "expected": []
+  },
+  {
+    "id": "control-6",
+    "text": "2026-09-15T09:00:00Z",
+    "expected": []
+  },
+  {
+    "id": "control-7",
+    "text": "request_id=REQ-999",
+    "expected": []
+  }
+]
