@@ -6,7 +6,11 @@ A local Flask workspace that removes supported sensitive patterns from applicati
 
 The fictional setting is Narmada Supplies in Ahmedabad. Sample people, credentials and log events are authored for this repository. No external dataset or cloud inference service is required.
 
-![Chhaya desktop workspace](docs/screenshots/desktop.png)
+![Chhaya desktop workspace](docs/screenshots/overview.jpg)
+
+![Chhaya completed workflow](docs/screenshots/workflow.jpg)
+
+![Chhaya mobile demo](docs/screenshots/mobile.jpg)
 
 ## What works
 
@@ -134,3 +138,5 @@ CI configuration repeats pytest with a 94% coverage floor, dependency checks, ev
 The project is informed by the [OWASP Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html), including its discussion of excluding sensitive values and verifying failure behavior. It does not claim OWASP certification or full compliance.
 
 Useful extensions: configurable organization-specific patterns with matching budgets; source-system adapters; deletion/retention controls; a stronger tamper-evident artifact mechanism; authenticated deployment. Private implementation/design notes are maintained outside this public repository.
+
+See [browser verification](docs/BROWSER_CHECKS.md) for the recorded workflow and mobile checks.
